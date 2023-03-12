@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejachoi <ejachoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: choiejae <choiejae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:01:30 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/12 19:06:23 by ejachoi          ###   ########.fr       */
+/*   Updated: 2023/03/12 20:25:18 by choiejae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "philo.h"
+#include "philo.h"
 
 int	philosopher(t_philo *philo, t_info *info)
 {
@@ -19,7 +19,8 @@ int	philosopher(t_philo *philo, t_info *info)
 	i = -1;
 	while (++i < info->philo_num)
 	{
-		if (pthread_create(&philo[i].thread, NULL, philo_lifecycle, &(philo[i])))
+		if (pthread_create(&philo[i].thread, NULL, philo_lifecycle, \
+			&(philo[i])))
 			return (1);
 	}
 	philo_monitoring(philo, info);

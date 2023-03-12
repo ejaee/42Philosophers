@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejachoi <ejachoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: choiejae <choiejae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 18:58:02 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/12 19:11:10 by ejachoi          ###   ########.fr       */
+/*   Updated: 2023/03/12 20:25:32 by choiejae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	error_handler_philo(t_philo *philo, t_info *info, char *message)
 	while (*message)
 		write(2, message++, 1);
 	ft_free(philo, info);
-	return (1);	
+	return (1);
 }
 
 void	ft_free_mutex_fork(t_info *info)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejachoi <ejachoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: choiejae <choiejae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 18:54:52 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/12 19:17:04 by ejachoi          ###   ########.fr       */
+/*   Updated: 2023/03/12 20:24:10 by choiejae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ void	philo_monitoring(t_philo *philo, t_info *info)
 		while (++i < info->philo_num)
 		{
 			time = ft_time();
-			if ((time - get_philo_time_eat_last(&(philo[i]))) > info->time_to_die)
+			if ((time - get_philo_time_eat_last(&(philo[i])))
+				> info->time_to_die)
 			{
 				philo_print(info, ft_time(), philo[i].p_id, "died");
 				set_info_isdead(info, 1);
