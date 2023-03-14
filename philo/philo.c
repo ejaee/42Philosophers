@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: choiejae <choiejae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ejachoi <ejachoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 18:54:52 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/14 19:08:50 by choiejae         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:16:24 by ejachoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	print_philo(t_info *info, long long time, int id, char *msg)
 int	monitor_philo(t_philo *philo, t_info *info)
 {
 	int			i;
-	long long	time;
 
 	while (!get_is_dead(info))
 	{
@@ -68,8 +67,7 @@ int	monitor_philo(t_philo *philo, t_info *info)
 		i = -1;
 		while (++i < info->philo_num)
 		{
-			time = ft_time();
-			if ((time - get_last_meal_time(&(philo[i])))
+			if ((ft_time() - get_last_meal_time(&(philo[i])))
 				> info->time_to_die)
 			{
 				if (print_philo(info, ft_time(), philo[i].id, "died"))
@@ -97,7 +95,8 @@ void	*pattern(void *argv)
 			set_meals_count_finish(info, philo);
 			if (print_philo(info, ft_time(), philo->id, "is sleeping"))
 				return ((void *)1);
-			usleep_for_efficiency((long long)info->time_to_sleep, ft_time(), info);
+			usleep_for_efficiency((long long)info->time_to_sleep, \
+				ft_time(), info);
 			if (print_philo(info, ft_time(), philo->id, "is thinking"))
 				return ((void *)1);
 		}

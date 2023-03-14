@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: choiejae <choiejae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ejachoi <ejachoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 18:55:13 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/14 18:59:39 by choiejae         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:12:15 by ejachoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	init_philo(t_philo *philo, t_info *info)
 	return (0);
 }
 
-int init_setting(int argc, char **argv, t_info *info, t_philo **philo)
+int	init_setting(int argc, char **argv, t_info *info, t_philo **philo)
 {
 	if (init_info(argc, argv, info))
 		return (error_handler("fail info init\n"));

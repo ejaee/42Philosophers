@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: choiejae <choiejae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ejachoi <ejachoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:01:53 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/14 19:08:16 by choiejae         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:14:11 by ejachoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ long long	get_last_meal_time(t_philo *philo);
 
 /* utils.c */
 long long	ft_time(void);
-void		usleep_for_efficiency(long long time, long long start, t_info *info);
+void		usleep_for_efficiency(long long time, long long start, \
+	t_info *info);
 void		usleep_for_philo_control(t_philo *philo);
 void		ft_free(t_philo *philo, t_info *info);
 int			ft_atoi(const char *str);
