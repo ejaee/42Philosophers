@@ -6,11 +6,19 @@
 /*   By: ejachoi <ejachoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:35:00 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/14 19:17:39 by ejachoi          ###   ########.fr       */
+/*   Updated: 2023/03/14 19:20:49 by ejachoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	usleep_for_philo_control(t_philo *philo)
+{
+	if (philo->id % 2 == 1)
+		usleep(500);
+	else
+		usleep(1000);
+}
 
 void	usleep_for_efficiency(long long time, long long start, t_info *info)
 {
@@ -21,14 +29,6 @@ void	usleep_for_efficiency(long long time, long long start, t_info *info)
 			break ;
 		usleep(150);
 	}
-}
-
-void	usleep_for_philo_control(t_philo *philo)
-{
-	if (philo->id % 2 == 1)
-		usleep(500);
-	else
-		usleep(1000);
 }
 
 long long	ft_time(void)
