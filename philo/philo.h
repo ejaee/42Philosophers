@@ -6,7 +6,7 @@
 /*   By: choiejae <choiejae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:01:53 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/12 20:27:35 by choiejae         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:08:16 by choiejae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
+
+# define DEAD 1
 
 typedef struct s_info
 {
@@ -41,39 +43,41 @@ typedef struct s_philo
 	pthread_mutex_t	mutex_philo;
 	pthread_t		thread;
 	t_info			*info;
-	int				p_id;
-	int				count_eat;
+	int				id;
+	int				meals_count;
 	int				left;
 	int				right;
-	long long		time_eat_last;
+	long long		last_meal_time;
 }	t_philo;
 
 /* init.c */
 int			init_info(int argc, char **argv, t_info *info);
 int			init_mutex(t_info *info);
 int			init_philo(t_philo *philo, t_info *info);
+int			init_setting(int argc, char **argv, t_info *info, t_philo **philo);
 
 /* error.c */
 int			error_handler(char *message);
 int			error_handler_mutex(t_info *info, char *message, int errno);
 int			error_handler_philo(t_philo *philo, t_info *info, char *message);
-void		ft_free_mutex_fork(t_info *info);
+void		free_mutex_fork(t_info *info);
 
 /* philo.c */
-void		*philo_lifecycle(void *argv);
-void		philo_monitoring(t_philo *philo, t_info *info);
+void		*pattern(void *argv);
+int			print_philo(t_info *info, long long time, int id, char *msg);
+int			monitor_philo(t_philo *philo, t_info *info);
 
 /* property.c */
-void		set_info_isdead(t_info *info, int flag);
-void		set_info_count_eat_finish(t_info *info, t_philo *philo);
-int			get_info_count_eat_finish(t_info *info);
-int			get_info_isdead(t_info *info);
-long long	get_philo_time_eat_last(t_philo *philo);
+void		set_is_dead(t_info *info);
+void		set_meals_count_finish(t_info *info, t_philo *philo);
+int			get_meals_count_finish(t_info *info);
+int			get_is_dead(t_info *info);
+long long	get_last_meal_time(t_philo *philo);
 
 /* utils.c */
 long long	ft_time(void);
-void		ft_usleep(long long time, long long start, t_info *info);
-void		ft_philo_usleep(t_philo *philo);
+void		usleep_for_efficiency(long long time, long long start, t_info *info);
+void		usleep_for_philo_control(t_philo *philo);
 void		ft_free(t_philo *philo, t_info *info);
 int			ft_atoi(const char *str);
 

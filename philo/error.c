@@ -6,7 +6,7 @@
 /*   By: choiejae <choiejae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 18:58:02 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/12 20:25:32 by choiejae         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:28:22 by choiejae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	error_handler(char *message)
 {
-	write(2, "Error : ", 8);
 	while (*message)
 		write(2, message++, 1);
 	return (1);
@@ -22,7 +21,6 @@ int	error_handler(char *message)
 
 int	error_handler_mutex(t_info *info, char *message, int errno)
 {
-	write(2, "Error : ", 8);
 	while (*message)
 		write(2, message++, 1);
 	if (errno == 1)
@@ -39,20 +37,19 @@ int	error_handler_mutex(t_info *info, char *message, int errno)
 		pthread_mutex_destroy(&(info->mutex_lifecycle));
 	}
 	else if (errno == 4)
-		ft_free_mutex_fork(info);
+		free_mutex_fork(info);
 	return (1);
 }
 
 int	error_handler_philo(t_philo *philo, t_info *info, char *message)
 {
-	write(2, "Error : ", 8);
 	while (*message)
 		write(2, message++, 1);
 	ft_free(philo, info);
 	return (1);
 }
 
-void	ft_free_mutex_fork(t_info *info)
+void	free_mutex_fork(t_info *info)
 {
 	int	i;
 

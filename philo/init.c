@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejachoi <ejachoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: choiejae <choiejae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 18:55:13 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/12 19:24:31 by ejachoi          ###   ########.fr       */
+/*   Updated: 2023/03/14 18:59:39 by choiejae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,31 @@ int	init_philo(t_philo *philo, t_info *info)
 {
 	int	i;
 
-	i = 0;
-	while (i < info->philo_num)
+	i = -1;
+	while (++i < info->philo_num)
 	{
-		philo[i].p_id = i + 1;
+		philo[i].id = i + 1;
 		philo[i].info = info;
-		philo[i].count_eat = 0;
+		philo[i].meals_count = 0;
 		philo[i].left = i;
 		philo[i].right = (i + 1) % info->philo_num;
-		philo[i].time_eat_last = ft_time();
+		philo[i].last_meal_time = ft_time();
 		if (pthread_mutex_init(&(philo[i].mutex_philo), NULL))
 			return (1);
-		i++;
 	}
+	return (0);
+}
+
+int init_setting(int argc, char **argv, t_info *info, t_philo **philo)
+{
+	if (init_info(argc, argv, info))
+		return (error_handler("fail info init\n"));
+	if (init_mutex(info))
+		return (1);
+	*philo = malloc(sizeof(t_philo) * info->philo_num);
+	if (!philo)
+		return (error_handler_mutex(info, "fail func mallot\n", 4));
+	if (init_philo(*philo, info))
+		return (error_handler_philo(*philo, info, "fail func mallot\n"));
 	return (0);
 }

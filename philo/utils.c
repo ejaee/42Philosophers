@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ejachoi <ejachoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: choiejae <choiejae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:35:00 by ejachoi           #+#    #+#             */
-/*   Updated: 2023/03/12 19:12:45 by ejachoi          ###   ########.fr       */
+/*   Updated: 2023/03/14 19:07:08 by choiejae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	usleep_for_efficiency(long long time, long long start, t_info *info)
+{
+	usleep(time * 0.8);
+	while (!(get_is_dead(info)))
+	{
+		if ((ft_time() - start) >= time)
+			break ;
+		usleep(150);
+	}
+}
+
+void	usleep_for_philo_control(t_philo *philo)
+{
+	if (philo->id % 2 == 1)
+		usleep(500);
+	else
+		usleep(1000);
+}
 
 long long	ft_time(void)
 {
@@ -19,25 +38,6 @@ long long	ft_time(void)
 	if (gettimeofday(&time, NULL))
 		return (-1);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-void	ft_usleep(long long time, long long start, t_info *info)
-{
-	usleep(time * 0.8);
-	while (!(get_info_isdead(info)))
-	{
-		if ((ft_time() - start) >= time)
-			break ;
-		usleep(150);
-	}
-}
-
-void	ft_philo_usleep(t_philo *philo)
-{
-	if (philo->p_id % 2 == 1)
-		usleep(500);
-	else
-		usleep(1000);
 }
 
 void	ft_free(t_philo *philo, t_info *info)
